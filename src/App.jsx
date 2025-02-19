@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as weatherServices from  './services/weatherServices'
 import WeatherSearch from './components/weatherSearch'
 
@@ -10,12 +10,15 @@ const App = () => {
 
 const fetchData = async (formData) => {
   // console.log(formData)
-
   const data = await weatherServices.show(formData)
   setWeather(data)
   console.log('Data:', data);
   setLoading(false)
 }
+
+useEffect(() => {
+  fetchData('New York')
+}, [])
 
 return (
   <>
